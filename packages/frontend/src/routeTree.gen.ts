@@ -88,3 +88,31 @@ export const routeTree = rootRoute.addChildren({
 })
 
 /* prettier-ignore-end */
+
+/* ROUTE_MANIFEST_START
+{
+  "routes": {
+    "__root__": {
+      "filePath": "__root.jsx",
+      "children": [
+        "/",
+        "/documents/$id",
+        "/auth/",
+        "/auth/google/cb"
+      ]
+    },
+    "/": {
+      "filePath": "index.lazy.jsx"
+    },
+    "/documents/$id": {
+      "filePath": "documents/$id.lazy.jsx"
+    },
+    "/auth/": {
+      "filePath": "auth/index.lazy.tsx"
+    },
+    "/auth/google/cb": {
+      "filePath": "auth/google/cb.tsx"
+    }
+  }
+}
+ROUTE_MANIFEST_END */

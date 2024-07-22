@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Flex, Box, Input, Button, Skeleton } from "@chakra-ui/react";
-import { AuthContext } from "../lib/authcontext";
-import { queryDocuments } from "../lib/documents";
-import { ExtensionsContext } from "../lib/ext/engine";
+import { AuthContext } from "../lib/authcontext.tsx";
+import { queryDocuments } from "../lib/documents.ts";
+import { ExtensionsContext } from "../lib/ext/engine.tsx";
+import { TAPIResponse } from "backend/src/lib/api_types.ts";
 
 export default function QueryDocuments() {
   const { token } = useContext(AuthContext);
@@ -12,9 +13,9 @@ export default function QueryDocuments() {
   // FIXME: handle error
   const { data, isLoading } = useQuery({
     queryKey: ["documents.initial"],
-    queryFn: queryDocuments(token, {
+    queryFn: queryDocuments(token as string, {
       limit: 50,
-      withTitles: true
+      includeTitles: true
     }),
   });
 
@@ -35,7 +36,7 @@ export default function QueryDocuments() {
       ) : (
         <Box my={8} overflow="auto">
           <Flex flexDir="column" gap={4}>
-            {data.documents.map((doc) => {
+            {data?.data.documents.map((doc) => {
               const extension = extensions[doc.extension];
 
               if (!extension) {

@@ -70,8 +70,10 @@ authrouter.post(
 
     return res.status(200).json({
       success: true,
-      user,
-      token,
+      data: {
+        user,
+        token,
+      },
     });
   },
 );
@@ -80,6 +82,6 @@ authrouter.post(
   "/me/",
   verifyAccessToken,
   (_: express.Request, res: express.Response) => {
-    res.status(200).json({ success: true, user: res.locals.user });
+    res.status(200).json({ success: true, data: { user: res.locals.user } });
   },
 );

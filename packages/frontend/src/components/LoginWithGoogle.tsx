@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/react";
-import { generateRandomString, persistOauthState } from "../lib/auth";
+import { generateRandomString, persistOauthState } from "../lib/auth.ts";
 
 function LoginWithGoogle() {
   const handleRedirect = () => {
@@ -20,7 +20,7 @@ function LoginWithGoogle() {
       authurl.searchParams.set(param, val),
     );
 
-    window.location = authurl.toString();
+    window.location.href = authurl.toString();
   };
 
   return <Button onClick={handleRedirect}>Login with Google</Button>;

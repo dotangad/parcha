@@ -1,7 +1,7 @@
 import { Box, Flex, Text, Spinner, Input, useToast } from "@chakra-ui/react";
 import { useState, useContext, useEffect } from "react";
 import * as _ from "lodash";
-import { $getRoot, $getSelection } from 'lexical';
+import { EditorState, $getRoot, $getSelection } from 'lexical';
 import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin';
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
@@ -9,9 +9,9 @@ import { ContentEditable } from '@lexical/react/LexicalContentEditable';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
-
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { AuthContext } from '../../authcontext';
+import { AuthContext } from '../../authcontext.tsx';
+import { Document } from "backend/src/db/models.ts";
 
 import "./editor.css";
 
@@ -24,13 +24,13 @@ const theme = {
 // Catch any errors that occur during Lexical updates and log them
 // or throw them as needed. If you don't throw them, Lexical will
 // try to recover gracefully without losing user data.
-function onError(error) {
+function onError(error: unknown) {
   console.error(error);
 }
 
-export function EditPage({ document }) {
+export function EditPage({ document }: { document: Document }) {
   const [title, setTitle] = useState(document.content.title);
-  const [editorState, setEditorState] = useState()
+  const [editorState, setEditorState] = useState<EditorState>();
   const { token } = useContext(AuthContext);
   const queryClient = useQueryClient();
   const toast = useToast();
@@ -38,7 +38,7 @@ export function EditPage({ document }) {
 
   const updateM = useMutation(
     {
-      mutationFn: async (content) => {
+      mutationFn: async (content: EditorState) => {
         if (_.isEqual({ title, content }, document.content)) {
           return { success: true, document };
         }
@@ -96,7 +96,7 @@ export function EditPage({ document }) {
       ) : (
         <Flex
           alignItems="center"
-          onClick={() => updateM.mutate(editor?.getJSON())}
+          onClick={() => updateM.mutate(editorState!)}
           cursor="pointer">
           <Box
             width="10px"
@@ -117,7 +117,7 @@ export function EditPage({ document }) {
     {/* TODO: show note meta */}
     <Box mt={6}>
       <Input
-        value={title}
+        value={title as string}
         onChange={(e) => setTitle(e.target.value)}
         size="2xl"
         fontSize="2xl"

@@ -1,0 +1,9 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "deno task start",
+    "watch": "deno task watch"
+  }
+}

@@ -1,8 +1,14 @@
 import { useState, useEffect, useContext, createContext } from "react";
 import { Flex, Spinner, Box } from "@chakra-ui/react";
-import LoginWithGoogle from "../components/LoginWithGoogle";
+import { User } from "backend/src/db/models.ts";
 
-export const AuthContext = createContext({
+export const AuthContext = createContext<{
+  loading: boolean;
+  token: boolean | string;
+  user: boolean | User;
+  authenticateWithGoogleToken: (googleToken: string) => Promise<unknown>;
+  logout: () => Promise<unknown>;
+}>({
   loading: true,
   token: false,
   user: false,
@@ -10,10 +16,10 @@ export const AuthContext = createContext({
   logout: async () => false,
 });
 
-export default function AuthWrapper({ children }) {
-  const [loading, setLoading] = useState(true);
-  const [token, setToken] = useState(false);
-  const [user, setUser] = useState(false);
+export default function AuthWrapper({ children }: { children: React.ReactNode }) {
+  const [loading, setLoading] = useState<boolean>(true);
+  const [token, setToken] = useState<boolean | string>(false);
+  const [user, setUser] = useState<boolean | object>(false);
 
   // TODO:
   // --> check localstorage for token
@@ -47,7 +53,7 @@ export default function AuthWrapper({ children }) {
         return;
       }
 
-      const { user } = await meReq.json();
+      const { data: { user } } = await meReq.json();
       setUser(user);
       setToken(lsToken);
       setLoading(false);
@@ -56,7 +62,7 @@ export default function AuthWrapper({ children }) {
     return;
   }, []);
 
-  const authenticateWithGoogleToken = async (googleToken) => {
+  const authenticateWithGoogleToken = async (googleToken: string) => {
     const req = await fetch(`${import.meta.env.VITE_API_URL}/auth/google/`, {
       method: "POST",
       headers: {
@@ -71,7 +77,7 @@ export default function AuthWrapper({ children }) {
       return;
     }
 
-    const { user, token } = await req.json();
+    const { data: { user, token } } = await req.json();
     window.localStorage.setItem("parcha__apitoken", token);
     setUser(user);
     setToken(token);
@@ -82,16 +88,15 @@ export default function AuthWrapper({ children }) {
     setUser(false);
     setToken(false);
     window.localStorage.removeItem("parcha__apitoken");
-    window.location = "/";
+    window.location.href = "/";
   };
 
   return (
     <AuthContext.Provider
       value={{
-        testing: "elllo",
         loading,
         token,
-        user,
+        user: user as User,
         authenticateWithGoogleToken,
         logout,
       }}
@@ -107,7 +112,7 @@ export default function AuthWrapper({ children }) {
   );
 }
 
-export function EnsureAuthenticated({ children, unauthenticated }) {
+export function EnsureAuthenticated({ children, unauthenticated }: { children: React.ReactNode; unauthenticated: React.ReactNode }) {
   const { token } = useContext(AuthContext);
 
   return token ? children : unauthenticated;

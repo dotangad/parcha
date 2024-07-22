@@ -15,4 +15,5 @@ export type Document<TContent = { [key: string]: unknown }> = {
   content: TContent;
   createdAt: Date;
   updatedAt: Date;
+  title?: string;
 };

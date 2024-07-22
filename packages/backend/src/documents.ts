@@ -48,7 +48,7 @@ docrouter.post(
 
     return res.status(200).json({
       success: true,
-      documents,
+      data: { documents },
     });
   },
 );
@@ -65,7 +65,7 @@ docrouter.post(
     if (!EXTENSIONS[extensionId]) {
       return res.status(400).json({
         success: false,
-        error: "Extension not found",
+        message: "Extension not found",
       });
     }
 
@@ -77,7 +77,7 @@ docrouter.post(
     if (!contentValidation.success) {
       return res.status(400).json({
         success: false,
-        error: contentValidation.error.issues[0].message,
+        message: contentValidation.error.issues[0].message,
       });
     }
 
@@ -100,7 +100,7 @@ docrouter.post(
       console.error("Failed to insert document:", error);
       return res.status(500).json({
         success: false,
-        error: "Failed to insert document",
+        message: "Failed to insert document",
       });
     }
 
@@ -122,7 +122,7 @@ docrouter.post(
 
     return res.status(200).json({
       success: true,
-      document,
+      data: { document },
     });
   },
 );
@@ -142,13 +142,13 @@ docrouter.get(
     if (!document) {
       return res.status(404).json({
         success: false,
-        error: "Document not found",
+        message: "Document not found",
       });
     }
 
     return res.status(200).json({
       success: true,
-      document,
+      data: { document },
     });
   },
 );
@@ -169,10 +169,12 @@ docrouter.post(
     if (result.acknowledged && result.modifiedCount === 1) {
       return res.status(200).json({
         success: true,
-        document: await documentCollection.findOne({
-          _id: ObjectId.createFromHexString(documentId),
-          user: user._id,
-        }),
+        data: {
+          document: await documentCollection.findOne({
+            _id: ObjectId.createFromHexString(documentId),
+            user: user._id,
+          }),
+        },
       });
     }
 

@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { Text, Flex, Image } from "@chakra-ui/react";
 import { Link } from "@tanstack/react-router"
-import { AuthContext } from "../lib/authcontext";
-import LoginWithGoogle from "./LoginWithGoogle";
+import { AuthContext } from "../lib/authcontext.tsx";
+import LoginWithGoogle from "./LoginWithGoogle.tsx";
+import { User } from "backend/src/db/models.ts";
 
 export default function Header() {
   const { token, user } = useContext(AuthContext);
@@ -18,7 +19,7 @@ export default function Header() {
       <Flex alignItems="center" justifyContent="center">
         {token ? (
           <Link to="/auth">
-            <Image src={user.picture} h={10} w={10} rounded="full" bg="purple.500/40" />
+            <Image src={(user as User).picture} h={10} w={10} rounded="full" bg="purple.500/40" />
           </Link>
         ) : (
           <LoginWithGoogle />

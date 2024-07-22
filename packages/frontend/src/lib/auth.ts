@@ -1,4 +1,4 @@
-export function generateRandomString(length) {
+export function generateRandomString(length: number): string {
   const chars =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   let final = "";
@@ -10,11 +10,11 @@ export function generateRandomString(length) {
   return final;
 }
 
-export function persistOauthState(state) {
+export function persistOauthState(state: string): void {
   localStorage.setItem("parcha__google_oauth_state", state);
 }
 
-export function compareOauthState(state, clean) {
+export function compareOauthState(state: string, clean: boolean): boolean {
   const original = localStorage.getItem("parcha__google_oauth_state");
   if (clean) localStorage.removeItem("parcha__google_oauth_state");
   if (!original) {

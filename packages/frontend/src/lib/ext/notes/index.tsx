@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import z from "zod";
-import { Create } from "./Create";
-import { DisplayRow } from "./DisplayRow";
-import { EditPage } from "./EditPage";
+import { Create } from "./Create.tsx";
+import { DisplayRow } from "./DisplayRow.tsx";
+import { EditPage } from "./EditPage.tsx";
 
 export const icon = "/notes-icon.png";
 export const name = "notes";

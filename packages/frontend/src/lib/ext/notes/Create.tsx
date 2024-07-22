@@ -1,9 +1,9 @@
 import { Flex, Image, Text, Spinner, useToast } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "@tanstack/react-router";
-import { icon, identifier } from "./index";
+import { icon, identifier } from "./index.tsx";
 import { useContext } from "react";
-import { AuthContext } from "../../authcontext";
+import { AuthContext } from "../../authcontext.tsx";
 
 export function Create() {
   const router = useRouter();
@@ -12,7 +12,7 @@ export function Create() {
 
   const { mutate, isPending } = useMutation(
     {
-      mutationFn: async (noteData) => {
+      mutationFn: async (noteData: { title: string, content: string }) => {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/documents/create/${identifier}`, {
           method: "POST",
           headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },

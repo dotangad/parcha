@@ -1,11 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createLazyFileRoute } from '@tanstack/react-router';
 import { useContext } from "react";
 import { useToast, Flex, Button, Box } from "@chakra-ui/react";
-import { AuthContext } from '../../lib/authcontext';
-import LoginWithGoogle from '../../components/LoginWithGoogle';
-import Header from '../../components/Header';
+import { AuthContext } from '../../lib/authcontext.tsx';
+import Header from '../../components/Header.tsx';
 
-export const Route = createFileRoute('/auth/')({
+export const Route = createLazyFileRoute('/auth/')({
   component: AuthInfo
 });
 
@@ -29,7 +28,7 @@ function AuthInfo() {
                 color="white"
                 _hover={{ bg: "purple.700" }}
                 onMouseDown={() =>
-                  navigator.clipboard.writeText(token).then(() =>
+                  navigator.clipboard.writeText(token as string).then(() =>
                     toast({
                       title: "Token copied to clipboard",
                       status: "success",

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useContext, useEffect, useState, memo } from "react";
 import { Flex, Spinner } from "@chakra-ui/react";
-import { AuthContext } from "../../../lib/authcontext";
+import { AuthContext } from "../../../lib/authcontext.tsx";
 
 export const Route = createFileRoute("/auth/google/cb")({
   component: GoogleCB,
@@ -14,8 +14,8 @@ function GoogleCB() {
 
   useEffect(() => {
     // TODO: we might have to move this logic out of the context to handle errors
-    authenticateWithGoogleToken(accessToken).then(() => {
-      window.location = "/";
+    authenticateWithGoogleToken(accessToken as string).then(() => {
+      window.location.href = "/";
     });
   }, [accessToken]);
 

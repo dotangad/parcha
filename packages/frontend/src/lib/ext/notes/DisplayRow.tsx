@@ -3,8 +3,10 @@
 import { Flex, Text, Box } from "@chakra-ui/react";
 import moment from "moment";
 import { Link } from "@tanstack/react-router";
+import { Document } from "backend/src/db/models.ts";
+import { TContent as TNoteContent } from "backend/extensions/notes/index.ts";
 
-export function DisplayRow({ document }) {
+export function DisplayRow({ document }: { document: Document }) {
   return (
     <Flex
       as={Link}
@@ -29,7 +31,7 @@ export function DisplayRow({ document }) {
         Note
       </Text>
       <Box flex={1}>
-        <Text lineHeight={1} fontSize="md" fontWeight="600" fontFamily="display">{document.content.title}</Text>
+        <Text lineHeight={1} fontSize="md" fontWeight="600" fontFamily="display">{document.content.title as string}</Text>
       </Box>
       <Text fontSize="sm" color="gray.500" fontWeight={500} lineHeight={1}>
         {moment(document.updatedAt).fromNow()}
