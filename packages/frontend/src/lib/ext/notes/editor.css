@@ -1,0 +1,85 @@
+.tiptap {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  /* border: 2px solid var(--chakra-colors-gray-300); */
+}
+
+.tiptap div[content-editable="true"] {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  font-family: inherit;
+}
+
+.tiptap div[contenteditable="true"]:focus {
+  outline: none;
+  /* box-shadow: -5px 0 5px -5px var(--chakra-colors-gray-300); */
+  /* border-left: 3px solid var(--chakra-colors-gray-300); */
+  /* padding-left: 3px; */
+  /* position: relative; */
+  /* left: -3px */
+}
+
+.tiptap h1 {
+  font-size: var(--chakra-fontSizes-4xl);
+  font-weight: var(--chakra-fontWeights-semibold);
+  line-height: var(--chakra-lineHeights-tight);
+  letter-spacing: var(--chakra-letterSpacings-normal);
+  font-family: var(--chakra-fonts-display);
+}
+
+.tiptap h2 {
+  font-size: var(--chakra-fontSizes-3xl);
+  font-weight: var(--chakra-fontWeights-semibold);
+  line-height: var(--chakra-lineHeights-tight);
+  letter-spacing: var(--chakra-letterSpacings-normal);
+  font-family: var(--chakra-fonts-display);
+}
+
+.tiptap h3 {
+  font-size: var(--chakra-fontSizes-2xl);
+  font-weight: var(--chakra-fontWeights-semibold);
+  line-height: var(--chakra-lineHeights-tight);
+  letter-spacing: var(--chakra-letterSpacings-normal);
+  font-family: var(--chakra-fonts-display);
+}
+
+.tiptap h4 {
+  font-size: var(--chakra-fontSizes-xl);
+  font-weight: var(--chakra-fontWeights-semibold);
+  line-height: var(--chakra-lineHeights-tight);
+  letter-spacing: var(--chakra-letterSpacings-normal);
+  font-family: var(--chakra-fonts-display);
+}
+
+.tiptap h5 {
+  font-size: var(--chakra-fontSizes-lg);
+  font-weight: var(--chakra-fontWeights-semibold);
+  line-height: var(--chakra-lineHeights-tight);
+  letter-spacing: var(--chakra-letterSpacings-normal);
+  font-family: var(--chakra-fonts-display);
+}
+
+.tiptap h6 {
+  font-size: var(--chakra-fontSizes-md);
+  font-weight: var(--chakra-fontWeights-semibold);
+  line-height: var(--chakra-lineHeights-tight);
+  letter-spacing: var(--chakra-letterSpacings-normal);
+  font-family: var(--chakra-fonts-display);
+}
+
+.tiptap blockquote {
+  border-left: 6px solid var(--chakra-colors-gray-300);
+  padding-left: 10px;
+  font-family: var(--chakra-fonts-display);
+}
+
+.tiptap ul, .tiptap ol {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0;
+}

@@ -1,0 +1,16 @@
+{
+  "tasks": {
+    "start": "deno run --allow-net main.ts",
+    "watch": "deno run --allow-all --watch main.ts"
+  },
+  "imports": {
+    "@wok/djwt": "jsr:@wok/djwt@^3.0.2",
+    "body-parser": "npm:body-parser@1.20.2",
+    "cors": "npm:cors@2.8.5",
+    "djwt": "https://deno.land/x/djwt@v2.9.1/mod.ts",
+    "express": "npm:express@5.0.0-beta.1",
+    "mongodb": "npm:mongodb",
+    "morgan": "npm:morgan@1.10.0",
+    "zod": "https://deno.land/x/zod@v3.21.4/mod.ts"
+  }
+}
