@@ -29,8 +29,11 @@ function DocumentPage() {
           {isLoading
             ? <Spinner />
             : (() => {
-              const extension = extensions[data.document.extension]
-              return <extension.EditPage document={data.document} />
+              const extension = extensions[data.data.document.extension]
+              if (!extension) {
+                return <Text>Extension not found</Text>
+              }
+              return <extension.EditPage document={data.data.document} />
             })()}
         </Box>
       </Box>

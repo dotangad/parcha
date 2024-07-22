@@ -13,6 +13,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AuthContext } from '../../authcontext.tsx';
 import { Document } from "backend/src/db/models.ts";
 
+// FIXME: NOTHING WORKS!!!
+
 import "./editor.css";
 
 
