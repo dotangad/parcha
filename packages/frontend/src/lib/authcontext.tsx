@@ -1,6 +1,39 @@
+"use client";
 import { useState, useEffect, useContext, createContext } from "react";
-import { Flex, Spinner, Box } from "@chakra-ui/react";
 import { User } from "backend/src/db/models.ts";
+import { LoadingSpinner } from "@/components/loadingSpinner";
+import { cn } from "./utils";
+
+export function generateRandomString(length: number): string {
+  const chars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let final = "";
+
+  for (let i = 0; i < length; i++) {
+    final += chars[Math.floor(Math.random() * (chars.length + 1))];
+  }
+
+  return final;
+}
+
+export function persistOauthState(state: string): void {
+  localStorage.setItem("parcha__google_oauth_state", state);
+}
+
+export function compareOauthState(state: string, clean: boolean): boolean {
+  const original = localStorage.getItem("parcha__google_oauth_state");
+  if (clean) localStorage.removeItem("parcha__google_oauth_state");
+  if (!original) {
+    throw new Error("No previous state to compare against");
+  }
+
+  if (original === state) {
+    return true;
+  }
+
+  return false;
+}
+
 
 export const AuthContext = createContext<{
   loading: boolean;
@@ -38,7 +71,7 @@ export default function AuthWrapper({ children }: { children: React.ReactNode })
 
     (async function () {
       // console.log(lsToken);
-      const meReq = await fetch(`${import.meta.env.VITE_API_URL}/auth/me/`, {
+      const meReq = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/me/`, {
         method: "POST",
         headers: new Headers({
           Authorization: `Bearer ${lsToken}`,
@@ -63,7 +96,7 @@ export default function AuthWrapper({ children }: { children: React.ReactNode })
   }, []);
 
   const authenticateWithGoogleToken = async (googleToken: string) => {
-    const req = await fetch(`${import.meta.env.VITE_API_URL}/auth/google/`, {
+    const req = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/google/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -102,9 +135,9 @@ export default function AuthWrapper({ children }: { children: React.ReactNode })
       }}
     >
       {loading ? (
-        <Flex justify="center" align="center" h="100vh">
-          <Spinner />
-        </Flex>
+        <div className="flex justify-center items-center h-screen">
+          <LoadingSpinner className={cn("animate-spin", "h-[100px]", "w-[100px]")} />
+        </div>
       ) : (
         children
       )}

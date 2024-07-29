@@ -3,7 +3,7 @@ import { createLazyFileRoute } from "@tanstack/react-router";
 import { Grid, GridItem, Text, Box } from "@chakra-ui/react";
 import { EnsureAuthenticated } from "../lib/authcontext";
 import QueryDocuments from "../components/QueryDocuments";
-import Header from "../components/Header";
+import Header from "../components/header";
 import { ExtensionsContext } from "../lib/ext/engine";
 
 export const Route = createLazyFileRoute("/")({
@@ -14,30 +14,30 @@ function Index() {
   const { extensions } = useContext(ExtensionsContext);
 
   return (
-    <Box w={"100%"} maxW="880px" mx="auto" px={6}>
+    <div className="w-full max-w-[880px] mx-auto px-6 border-[1px] border-gray-200 rounded-lg">
       <Header />
-      <Box w={"100%"} mx="auto" my={8}>
-        <Text fontFamily="yatra" fontSize="4xl" fontWeight={400}>Welcome!</Text>
-        <Text fontSize="lg">
+      <div className="w-full mx-auto py-[50px]">
+        <p className="font-yatra text-3xl font-normal">Welcome!</p>
+        <p className="text-lg">
           पarcha is a knowledge management app for the common man. It keeps your data in your hands and provides near infinte customizability through the extension engine. It&apos;s also open source!
-        </Text>
-      </Box>
+        </p>
+      </div>
       <EnsureAuthenticated unauthenticated={() => <></>}>
         <>
-          <Grid w={"100%"} mx="auto" mt={10} templateColumns="repeat(4, 1fr)">
+          <div className="w-full mx-auto mt-10 grid grid-cols-4 gap-4">
             {Object.values(extensions).map((extension, i) => {
               return (
-                <GridItem aspectRatio={1.3} key={i}>
+                <div className="aspect-w-1 aspect-h-[1.3]" key={i}>
                   <extension.Create />
-                </GridItem>
+                </div>
               )
             })}
-          </Grid>
-          <Box w={"100%"} mx="auto" mt={6}>
+          </div>
+          <div className="w-full mx-auto mt-6">
             <QueryDocuments />
-          </Box>
+          </div>
         </>
       </EnsureAuthenticated>
-    </Box>
+    </div>
   );
 }

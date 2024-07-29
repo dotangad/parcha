@@ -1,30 +1,30 @@
-import { useContext } from "react";
-import { Text, Flex, Image } from "@chakra-ui/react";
-import { Link } from "@tanstack/react-router"
-import { AuthContext } from "../lib/authcontext.tsx";
-import LoginWithGoogle from "./LoginWithGoogle.tsx";
+"use client";
+
+import React from "react";
+import Link from "next/link";
+import { AuthContext } from "@/lib/authcontext.tsx";
+import LoginWithGoogle from "@/components/loginWithGoogle";
 import { User } from "backend/src/db/models.ts";
 
 export default function Header() {
-  const { token, user } = useContext(AuthContext);
+  const { token, user } = React.useContext(AuthContext);
 
   return (
-    <Flex justifyContent="space-between" alignItems="center" pt={8} w="100%" mx="auto">
-      <Flex justifyContent="center" alignItems="center" gap={4}>
-        {/* <Image src="/logo256-2.png" h={8} w={8} /> */}
-        <Link to="/">
-          <Text fontSize="2xl" fontWeight="bold" fontFamily="yatra"><Text color="pPurple.dark" as="span">प</Text>archa</Text>
+    <div className="flex justify-between items-center pt-8 w-full mx-auto max-w-[880px]">
+      <div className="flex justify-center items-center gap-4">
+        <Link href="/">
+          <span className="text-lime-500 text-2xl tracking-wider font-semibold font-mono">parcha</span>
         </Link>
-      </Flex>
-      <Flex alignItems="center" justifyContent="center">
+      </div>
+      <div className="flex items-center justify-center">
         {token ? (
-          <Link to="/auth">
-            <Image src={(user as User).picture} h={10} w={10} rounded="full" bg="purple.500/40" />
+          <Link href="/auth">
+            <img src={(user as User).picture} className="h-10 w-10 rounded-full bg-lime-500" />
           </Link>
         ) : (
           <LoginWithGoogle />
         )}
-      </Flex>
-    </Flex>
+      </div>
+    </div>
   );
 }
