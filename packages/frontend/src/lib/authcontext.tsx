@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useContext, createContext } from "react";
-import { User } from "backend/src/db/models.ts";
+import { User } from "backend/src/db/models";
 import { LoadingSpinner } from "@/components/loadingSpinner";
 import { cn } from "./utils";
 

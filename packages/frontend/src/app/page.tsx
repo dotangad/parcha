@@ -10,7 +10,6 @@ export default function Home() {
         <p className="text-4xl font-semibold font-mono">Welcome!</p>
         <p className="text-lg mt-2">
           <span className="italic font-mono font-semibold">parcha</span> (roughly piece or chit in Hindi) is a knowledge management app for the common man. It keeps your data in your hands and provides near infinte customizability through the extension engine. It&apos;s also open source!
-          Whereas disregard and contempt for human rights have resulted
         </p>
       </div>
       <EnsureAuthenticated unauthenticated={<></>}>

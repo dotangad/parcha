@@ -1,0 +1,3 @@
+{
+  "workspace": ["./packages/backend", "./packages/frontend"]
+}

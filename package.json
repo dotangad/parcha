@@ -3,16 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "private": true,
-  "workspaces": [
-    "packages/backend",
-    "packages/frontend_arc",
-    "packages/frontend"
-  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "workspaces": [
+    "packages/frontend",
+    "packages/backend"
+  ],
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+  }
 }
