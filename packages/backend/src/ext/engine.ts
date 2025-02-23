@@ -13,6 +13,7 @@ export type TExtension<TContent> = {
   description: string;
   contentSchema: z.AnyZodObject;
   hooks: {
+    // TODO: pass down a "ctx" object to the hooks, it'll be more useful later but for now I'll just add a logger to it
     onRegister?: () => Promise<void>;
     onCreate?: (document: Document<TContent>) => Promise<Document<TContent>>;
   };

@@ -32,8 +32,6 @@ app.use("/v1/extensions", extrouter.default);
 
 In the future maybe I should think about mutexes or locks to make sure the `EXTENSIONS` object is accessed safely.
 
-## Switching to Postgres
-
-I'm having trouble finding an appropriate migration tool and typesafe access method but for now I've landed on using 
-
+## Interesting UI Patterns
+- [ ] Sublime Merge click again to confirm popover
 

@@ -7,13 +7,17 @@
     "watch": "deno task watch"
   },
   "dependencies": {
+    "@pgtyped/runtime": "^2.4.2",
+    "@types/pg": "^8.11.11"
   },
   "devDependencies": {
-    "kysely-codegen": "^0.17.0",
-    "@types/express": "^5.0.0",
-    "@types/cors": "^2.8.17",
+    "@pgtyped/cli": "^2.4.2",
     "@types/body-parser": "^1.19.5",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
     "@types/morgan": "^1.9.9",
-    "kysely-ctl": "^0.8.5"
+    "kysely-codegen": "^0.17.0",
+    "kysely-ctl": "^0.8.5",
+    "typescript": "^5.7.3"
   }
 }

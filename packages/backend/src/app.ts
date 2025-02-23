@@ -18,6 +18,7 @@ registerExtension(files);
 const app = express();
 
 // Logger
+// TODO: switch to pino
 app.use(morgan("dev"));
 
 // CORS

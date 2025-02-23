@@ -6,7 +6,6 @@ const extrouter = express.Router();
 
 for (const extension of Object.values(EXTENSIONS)) {
   if (extension.routes) {
-    console.log(`/${extension.identifier}`);
     extrouter.use(`/${extension.identifier}`, extension.routes);
   }
 }
