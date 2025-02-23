@@ -1,4 +1,5 @@
-import express from "npm:express@5.0.0-beta.1";
+// @ts-types="@types/express"
+import express from "express";
 import db, { client } from "./db/index.ts";
 import { User } from "./db/models.ts";
 import { generateToken } from "./lib/auth.ts";
@@ -7,7 +8,7 @@ import { verifyAccessToken } from "./lib/middleware.ts";
 
 export const authrouter = express.Router();
 
-authrouter.get("/", async (req: express.Request, res: express.Response) => {
+authrouter.get("/", async (_: express.Request, res: express.Response) => {
   try {
     await client.db().admin().ping(); // Perform a simple operation to check the connection
     res.status(200).json({ success: true, message: "Database is connected!" });

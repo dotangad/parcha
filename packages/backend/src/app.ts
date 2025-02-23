@@ -1,14 +1,19 @@
-import bodyParser from "npm:body-parser@1.20.2";
-import cors from "npm:cors@2.8.5";
-import express from "npm:express@5.0.0-beta.1";
-import morgan from "npm:morgan@1.10.0";
-import { authrouter } from "./auth.ts";
-import { docrouter } from "./documents.ts";
-import { registerExtension } from "./ext/engine.ts";
-import notes from "../extensions/notes/index.ts";
-
+// @ts-types="@types/body-parser"
+import bodyParser from "body-parser";
+// @ts-types="@types/cors"
+import cors from "cors";
+// @ts-types="@types/express"
+import express from "express";
+// @ts-types="@types/morgan"
+import morgan from "morgan";
+import { authrouter } from "@/auth.ts";
+import { docrouter } from "@/documents.ts";
+import { registerExtension } from "@/ext/engine.ts";
+import notes from "@extensions/notes/index.ts";
+import files from "@extensions/files/index.ts";
 // Register extensions
 registerExtension(notes);
+registerExtension(files);
 
 const app = express();
 

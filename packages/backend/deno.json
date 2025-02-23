@@ -1,16 +1,23 @@
 {
-  "tasks": {
-    "start": "deno run --allow-net main.ts",
-    "watch": "deno run --allow-all --watch main.ts"
-  },
   "imports": {
+    "@/": "./src/",
+    "@extensions/": "./extensions/",
+    "@std/collections": "jsr:@std/collections@^1.0.10",
     "@wok/djwt": "jsr:@wok/djwt@^3.0.2",
-    "body-parser": "npm:body-parser@1.20.2",
-    "cors": "npm:cors@2.8.5",
-    "djwt": "https://deno.land/x/djwt@v2.9.1/mod.ts",
-    "express": "npm:express@5.0.0-beta.1",
-    "mongodb": "npm:mongodb",
-    "morgan": "npm:morgan@1.10.0",
-    "zod": "https://deno.land/x/zod@v3.21.4/mod.ts"
+    "body-parser": "npm:body-parser@^1.20.2",
+    "cors": "npm:cors@^2.8.5",
+    "express": "npm:express@^5.0.1",
+    "mongodb": "npm:mongodb@^6.13.0",
+    "morgan": "npm:morgan@^1.10.0",
+    "zod": "npm:zod@^3.24.2",
+    "@aws-sdk/client-s3": "npm:@aws-sdk/client-s3@^3.750.0",
+    "@aws-sdk/s3-presigned-post": "npm:@aws-sdk/s3-presigned-post@^3.750.0", 
+    "@aws-sdk/s3-request-presigner": "npm:@aws-sdk/s3-request-presigner@^3.750.0",
+    "pg": "npm:pg@^8.13.3"
+  },
+  "tasks": {
+    "start": "deno run --allow-all main.ts",
+    "watch": "deno run --allow-all --watch main.ts",
+    "test": "deno test --allow-net",
   }
 }

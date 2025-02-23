@@ -1,7 +1,8 @@
-import express from "npm:express@5.0.0-beta.1";
+// @ts-types="@types/express"
+import express from "express";
 import db from "./db/index.ts";
 import { Document } from "./db/models.ts";
-import { ObjectId } from "npm:mongodb";
+import { ObjectId } from "mongodb";
 import { verifyAccessToken } from "./lib/middleware.ts";
 import { EXTENSIONS } from "./ext/engine.ts";
 import { TDocumentQuery } from "./lib/documents.ts";

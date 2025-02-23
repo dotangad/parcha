@@ -1,6 +1,6 @@
 import { TExtension } from "../../src/ext/engine.ts";
 import { Document } from "../../src/db/models.ts";
-import { z } from "npm:zod";
+import { z } from "zod";
 
 export type TContent = {
   title: string;

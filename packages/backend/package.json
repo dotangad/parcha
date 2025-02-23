@@ -5,5 +5,15 @@
   "scripts": {
     "start": "deno task start",
     "watch": "deno task watch"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "kysely-codegen": "^0.17.0",
+    "@types/express": "^5.0.0",
+    "@types/cors": "^2.8.17",
+    "@types/body-parser": "^1.19.5",
+    "@types/morgan": "^1.9.9",
+    "kysely-ctl": "^0.8.5"
   }
 }

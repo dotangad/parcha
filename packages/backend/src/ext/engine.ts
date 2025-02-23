@@ -1,5 +1,7 @@
-import { z } from "npm:zod";
+import { z } from "zod";
 import { Document } from "../db/models.ts";
+// @ts-types="@types/express"
+import express from "express";
 
 // deno-lint-ignore no-explicit-any
 export const EXTENSIONS: Record<string, TExtension<any>> = {};
@@ -17,11 +19,16 @@ export type TExtension<TContent> = {
   helpers: {
     getDocumentTitle: (document: Document<TContent>) => Promise<string>;
   };
+  routes?: express.Router;
 };
 
 export async function registerExtension<TContent>(
   extension: TExtension<TContent>,
 ) {
+  if (EXTENSIONS[extension.identifier]) {
+    throw new Error(`Extension ${extension.identifier} already registered`);
+  }
+
   extension.hooks.onRegister && await extension.hooks.onRegister();
 
   EXTENSIONS[extension.identifier] = extension;

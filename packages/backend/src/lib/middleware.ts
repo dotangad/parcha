@@ -1,4 +1,4 @@
-import express from "npm:express@5.0.0-beta.1";
+import express from "express";
 import { userFromToken } from "./auth.ts";
 
 export async function verifyAccessToken(
