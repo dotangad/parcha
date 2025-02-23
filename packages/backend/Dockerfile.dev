@@ -1,0 +1,8 @@
+FROM denoland/deno:2.1.10
+
+WORKDIR /app
+
+# Install Deno
+EXPOSE 8000
+
+CMD ["deno", "run", "--watch", "--allow-all", "main.ts"] 
