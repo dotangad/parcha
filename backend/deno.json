@@ -12,17 +12,12 @@
     "zod": "npm:zod@^3.24.2",
     "@aws-sdk/client-s3": "npm:@aws-sdk/client-s3@^3.750.0",
     "@aws-sdk/s3-presigned-post": "npm:@aws-sdk/s3-presigned-post@^3.750.0", 
-    "@aws-sdk/s3-request-presigner": "npm:@aws-sdk/s3-request-presigner@^3.750.0",
-    "pg": "npm:pg@^8.13.3",
-    "postgres-migrations": "npm:postgres-migrations@^5.3.0",
-    "@pgtyped/runtime": "npm:@pgtyped/runtime@^2.4.2"
+    "@aws-sdk/s3-request-presigner": "npm:@aws-sdk/s3-request-presigner@^3.750.0"
   },
   "nodeModulesDir": "auto",
   "tasks": {
     "start": "deno run --allow-all main.ts",
     "watch": "deno run --allow-all --watch main.ts",
-    "test": "deno test --allow-net",
-    "migrate": "deno run --allow-all database/migrate.ts",
-    "pgtyped": "pgtyped --config pgtyped.json"
+    "test": "deno test --allow-net"
   }
 }

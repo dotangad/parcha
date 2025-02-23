@@ -10,19 +10,6 @@ services:
     volumes:
       - ./parchamongo:/data/db
 
-  postgres:
-    image: postgres:latest
-    container_name: parchapostgres
-    ports:
-      - 5432:5432
-    environment:
-      POSTGRES_USER: parcha
-      POSTGRES_PASSWORD: parcha
-      POSTGRES_DB: parcha
-    volumes:
-      - ./parchapostgres:/var/lib/postgresql/data
-      - ./database/init-scripts:/docker-entrypoint-initdb.d
-
   backend:
     image: parchabackend
     build:
@@ -37,4 +24,3 @@ services:
       - .env
     depends_on:
       - mongodb
-      - postgres
