@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect, useContext, createContext } from "react";
-import { User } from "backend/src/db/models";
+import { User } from "@/lib/models";
 import { LoadingSpinner } from "@/components/loadingSpinner";
-import { cn } from "./utils";
+import { cn } from "@/lib/utils";
 
 export function generateRandomString(length: number): string {
   const chars =

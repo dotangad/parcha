@@ -34,4 +34,5 @@ In the future maybe I should think about mutexes or locks to make sure the `EXTE
 
 ## Interesting UI Patterns
 - [ ] Sublime Merge click again to confirm popover
+- [ ] ctrl+alt+shift+cmd for modifiers - use Raycast's hyper key
 
