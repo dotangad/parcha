@@ -1,0 +1,8 @@
+{
+  "name": "@parcha/server",
+  "version": "0.1.0",
+  "exports": "./main.ts",
+  "imports": {
+    "@parcha/database": "../database/"
+  }
+}

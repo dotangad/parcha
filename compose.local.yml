@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: parcha_postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: parcha
+      POSTGRES_PASSWORD: parcha
+      POSTGRES_DB: parcha
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+      - ./database/init-scripts:/docker-entrypoint-initdb.d

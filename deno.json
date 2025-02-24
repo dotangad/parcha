@@ -1,0 +1,9 @@
+{
+  "name": "@parcha/root",
+  "version": "0.1.0",
+  "exports": "./index.ts",
+  "workspace": [
+    "./database",
+    "./server"
+  ]
+}

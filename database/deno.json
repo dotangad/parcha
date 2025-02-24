@@ -1,0 +1,21 @@
+{
+  "name": "@parcha/database",
+  "version": "0.1.0",
+  "exports": {
+    ".": "./index.ts",
+    "./index.ts": "./index.ts",
+    "./Documents.ts": "./types/public/Documents.ts",
+    "./Users.ts": "./types/public/Users.ts"
+  },
+  "imports": {
+    "postgres-migrations": "npm:postgres-migrations@^5.3.0",
+    "pg": "npm:pg@^8.13.0",
+    "kanel": "npm:kanel@^3.11.0",
+    "kanel-zod": "npm:kanel-zod@^1.4.0",
+    "zod": "npm:zod@^3.24.2"
+  },
+  "tasks": {
+    "kanel": "deno run --allow-net --allow-read --allow-env --allow-write kanel.ts",
+    "migrate": "deno run --allow-net --allow-read --allow-env migrate.ts"
+  }
+}
