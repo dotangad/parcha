@@ -1,6 +1,14 @@
 import * as djwt from "@wok/djwt";
 import type User from "@parcha/database/Users.ts";
 
+// const key = await crypto.subtle.generateKey(
+//   { name: "HMAC", hash: "SHA-512" },
+//   true,
+//   ["sign", "verify"],
+// );
+
+// await Deno.writeTextFile("./jwtkey.json", JSON.stringify(await crypto.subtle.exportKey("jwk", key)));
+
 const keyJson = JSON.parse(await Deno.readTextFile("./jwtkey.json"));
 const key = await crypto.subtle.importKey(
   "jwk",

@@ -26,7 +26,7 @@ auth.use(async (c, next) => {
   await next();
 });
 
-auth.post("/google", async (c) => {
+auth.post("/google/", async (c) => {
   try {
     const { access_token } = await c.req.json();
 
@@ -44,9 +44,9 @@ auth.post("/google", async (c) => {
     const user = await client().query<User>(
       {
         name: "upsert-user-on-login",
-        text: `insert into users (email, name, googleId, picture)
+        text: `insert into users (email, name, google_id, picture)
           values ($1::text, $2::text, $3::text, $4::text)
-          on conflict (googleId) do update set
+          on conflict (google_id) do update set
             email = $1::text,
             name = $2::text,
             picture = $4::text
@@ -61,15 +61,15 @@ auth.post("/google", async (c) => {
     );
 
     const token = await generateToken(user.rows[0]);
-    return c.json({ success: true, message: "Database connected!", token }, 200);
+    return c.json({ success: true, message: "Database connected!", data: { user: user.rows[0], token } }, 200);
   } catch (error) {
     console.error(error);
     return c.json({ success: false, message: "Internal server error" }, 500);
   }
 });
 
-auth.post("/me", authenticated, (c) => {
-  return c.json({ success: true, message: "Authenticated", user: c.get("user") }, 200);
+auth.post("/me/", authenticated, (c) => {
+  return c.json({ success: true, message: "Authenticated", data: { user: c.get("user") } }, 200);
 });
 
 export default auth;

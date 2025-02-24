@@ -3,6 +3,7 @@ import { logger } from "hono/logger";
 import { cors } from "hono/cors";
 import client from "./client.ts";
 import type User from "@parcha/database/Users.ts";
+import auth from "./auth/index.ts";
 
 export type HonoVariables = {
   user?: User;
@@ -21,7 +22,7 @@ const api = new Hono<{
 api.use(cors());
 
 // Healthcheck
-api.get("/healthcheck", async (c) => {
+api.get("/healthcheck/", async (c) => {
   try {
     await client().query("select 1");
     return c.json({ success: true, message: "Database connected!" }, 200);
@@ -31,9 +32,12 @@ api.get("/healthcheck", async (c) => {
   }
 });
 
+api.route("/auth", auth);
+
 app.route("/api/v1/", api);
 Deno.serve({
   onListen({ hostname, port }) {
+    console.log(app.routes)
     console.log(`Server started at http://${hostname}:${port}`);
   },
   port: parseInt(Deno.env.get("PORT") || "8080"),

@@ -3,6 +3,7 @@ import { userFromToken } from "./jwt.ts";
 
 export const authenticated = async (c: Context, next: Next) => {
   const token = (c.req.header("Authorization")?.split(" ") ?? [null, null])[1];
+  console.log("token", token);
   if (!token) {
     return c.json({ success: false, message: "Unauthorized" }, 401);
   }

@@ -11,9 +11,9 @@ $$ LANGUAGE plpgsql;
 -- Create table for User
 CREATE TABLE users (
     id uuid PRIMARY KEY default gen_random_uuid(), -- Using SERIAL for auto-incrementing ID
-    email TEXT NOT NULL unique,
+    email TEXT NOT NULL,
     name TEXT NOT NULL,
-    google_id TEXT NOT NULL,
+    google_id TEXT NOT NULL unique,
     picture TEXT NOT NULL
 );
 
