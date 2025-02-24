@@ -1,24 +1,22 @@
-import pg from "pg"
+// @ts-types="npm:@types/pg"
+import pg from "pg";
 
-export const dbConfig = {
+export const Client = pg.Client;
+export type ClientConfig = pg.ClientConfig;
+export type Client = pg.Client;
+
+export const dbConfig: ClientConfig = {
   database: Deno.env.get("POSTGRES_DB") || "parcha",
   user: Deno.env.get("POSTGRES_USER") || "parcha",
   password: Deno.env.get("POSTGRES_PASSWORD") || "parcha",
-  host: Deno.env.get("POSTGRES_HOST") || "postgres",
+  host: Deno.env.get("POSTGRES_HOST") || "localhost",
   port: parseInt(Deno.env.get("POSTGRES_PORT") || "5432"),
-
-  // Default: false for backwards-compatibility
-  // This might change!
-  ensureDatabaseExists: true,
-
-  // Default: "postgres"
-  // Used when checking/creating "database-name"
-  defaultDatabase: "postgres"
 }
 
-export async function connect(config: pg.ClientConfig = dbConfig) {
+export async function connect(config = dbConfig): Promise<Client> {
   try {
-    const client = new pg.Client(config);
+    const client = new Client(config);
+
     await client.connect();
     return client;
   } catch (err) {

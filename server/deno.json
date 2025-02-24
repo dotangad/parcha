@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "exports": "./main.ts",
   "imports": {
-    "@parcha/database": "../database/"
+    "hono": "jsr:@hono/hono@^4.7.0",
+    "pino": "npm:pino@^9.6.0",
+    "@wok/djwt": "jsr:@wok/djwt@^3.0.2"
   }
 }
