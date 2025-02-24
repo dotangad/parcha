@@ -4,15 +4,17 @@ import { cors } from "hono/cors";
 import client from "./client.ts";
 import type User from "@parcha/database/Users.ts";
 
+export type HonoVariables = {
+  user?: User;
+};
+
 const app = new Hono();
 
 // Logger
 app.use(logger());
 
 const api = new Hono<{
-  Variables: {
-    user?: User;
-  };
+  Variables: HonoVariables;
 }>();
 
 // CORS

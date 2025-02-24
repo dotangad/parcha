@@ -1,9 +1,9 @@
 import { Hono } from "hono";
 import client from "../client.ts";
 import type User from "@parcha/database/Users.ts";
-import { generateToken, userFromToken } from "./jwt.ts";
+import { generateToken } from "./jwt.ts";
 import { authenticated } from "./middleware.ts";
-
+import type { HonoVariables } from "../main.ts";
 interface GoogleUserData {
   sub: string;
   name: string;
@@ -16,7 +16,7 @@ interface GoogleUserData {
   hd: string;
 }
 
-const auth = new Hono();
+const auth = new Hono<{ Variables: HonoVariables }>();
 
 auth.use(async (c, next) => {
   const contentType = c.req.header("Content-Type");

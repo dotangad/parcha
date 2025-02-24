@@ -18,3 +18,8 @@ const config: kanel.Config = {
 };
 
 await kanel.processDatabase(config);
+// Once again for the boys in the back
+await kanel.processDatabase({
+  ...config,
+  outputPath: "../web/src/types/db",
+});
