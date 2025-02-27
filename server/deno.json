@@ -1,10 +1,14 @@
 {
   "name": "@parcha/server",
   "version": "0.1.0",
-  "exports": "./main.ts",
+  "exports": {
+    ".": "./main.ts",
+    "./extensions.ts": "./extensions/index.ts"
+  },
   "imports": {
     "hono": "jsr:@hono/hono@^4.7.0",
     "pino": "npm:pino@^9.6.0",
-    "@wok/djwt": "jsr:@wok/djwt@^3.0.2"
+    "@wok/djwt": "jsr:@wok/djwt@^3.0.2",
+    "zod": "npm:zod@^3.24.2"
   }
 }

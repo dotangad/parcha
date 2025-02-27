@@ -4,6 +4,7 @@
   "exports": {
     ".": "./index.ts",
     "./index.ts": "./index.ts",
+    "./lib.ts": "./lib.ts",
     "./Documents.ts": "./types/public/Documents.ts",
     "./Users.ts": "./types/public/Users.ts"
   },

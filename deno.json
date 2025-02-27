@@ -4,6 +4,7 @@
   "exports": "./index.ts",
   "workspace": [
     "./database",
-    "./server"
+    "./server",
+    "./extensions/*"
   ]
 }

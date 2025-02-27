@@ -1,0 +1,11 @@
+{
+  "name": "@parcha/notes",
+  "version": "0.1.0",
+  "exports": {
+    ".": "./index.ts",
+    "./index.ts": "./index.ts"
+  },
+  "imports": {
+    "zod": "npm:zod@^3.24.2"
+  }
+}

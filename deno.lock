@@ -660,11 +660,17 @@
           "npm:zod@^3.24.2"
         ]
       },
+      "extensions/notes": {
+        "dependencies": [
+          "npm:zod@^3.24.2"
+        ]
+      },
       "server": {
         "dependencies": [
           "jsr:@hono/hono@^4.7.0",
           "jsr:@wok/djwt@^3.0.2",
-          "npm:pino@^9.6.0"
+          "npm:pino@^9.6.0",
+          "npm:zod@^3.24.2"
         ]
       }
     }

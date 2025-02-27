@@ -4,6 +4,11 @@ import { cors } from "hono/cors";
 import client from "./client.ts";
 import type User from "@parcha/database/Users.ts";
 import auth from "./auth/index.ts";
+import documents from "./documents/index.ts";
+import { registerExtension } from "./extensions/index.ts";
+import notes from "@parcha/notes";
+
+registerExtension(notes);
 
 export type HonoVariables = {
   user?: User;
@@ -33,11 +38,11 @@ api.get("/healthcheck/", async (c) => {
 });
 
 api.route("/auth", auth);
+api.route("/documents", documents);
 
 app.route("/api/v1/", api);
 Deno.serve({
   onListen({ hostname, port }) {
-    console.log(app.routes)
     console.log(`Server started at http://${hostname}:${port}`);
   },
   port: parseInt(Deno.env.get("PORT") || "8080"),
