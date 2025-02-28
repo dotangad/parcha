@@ -1,4 +1,4 @@
-// @ts-types="npm:@types/pg"
+// @ts-types="@types/pg"
 import pg from "pg";
 
 export const Client = pg.Client;

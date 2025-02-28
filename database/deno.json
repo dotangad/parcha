@@ -13,7 +13,8 @@
     "pg": "npm:pg@^8.13.0",
     "kanel": "npm:kanel@^3.11.0",
     "kanel-zod": "npm:kanel-zod@^1.4.0",
-    "zod": "npm:zod@^3.24.2"
+    "zod": "npm:zod@^3.24.2",
+    "@types/pg": "npm:@types/pg@^8.11.10"
   },
   "tasks": {
     "kanel": "deno run --allow-net --allow-read --allow-env --allow-write kanel.ts",
