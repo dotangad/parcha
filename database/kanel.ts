@@ -14,12 +14,7 @@ const config: kanel.Config = {
 
   customTypeMap: {},
 
-  preRenderHooks: [kanelZod.generateZodSchemas, kanelZod.zodCamelCaseHook]
+  preRenderHooks: [kanelZod.generateZodSchemas, kanelZod.zodCamelCaseHook],
 };
 
 await kanel.processDatabase(config);
-// Once again for the boys in the back
-await kanel.processDatabase({
-  ...config,
-  outputPath: "../web/src/types/db",
-});
