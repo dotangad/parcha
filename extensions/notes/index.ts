@@ -15,7 +15,7 @@ export default {
   }),
   hooks: {
     onRegister: async () => {},
-    onCreate: async (document: TDocument<TContent>) => {
+    onCreate: async (document: Omit<TDocument<TContent>, "id" | "createdAt" | "updatedAt">) => {
       console.log("onCreate", document);
       return document;
     },

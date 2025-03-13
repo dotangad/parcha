@@ -6,7 +6,8 @@
     "./index.ts": "./index.ts",
     "./lib.ts": "./lib.ts",
     "./Documents.ts": "./types/public/Documents.ts",
-    "./Users.ts": "./types/public/Users.ts"
+    "./Users.ts": "./types/public/Users.ts",
+    "./Edges.ts": "./types/public/Edges.ts"
   },
   "imports": {
     "postgres-migrations": "npm:postgres-migrations@^5.3.0",
