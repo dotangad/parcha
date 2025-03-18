@@ -1,5 +1,7 @@
+// deno-lint-ignore-file no-unused-vars
 import type { TDocumentQuery } from "./documents/index.ts";
 import type { TDocument } from "./extensions/index.ts";
+import type Edges from "@parcha/database/Edges.ts";
 
 const API_URL = "http://localhost:8080/api/v1";
 const TOKEN =
@@ -41,22 +43,96 @@ const createDocument = async (
       body: JSON.stringify({ document }),
     },
   );
-
   return await response.json();
 };
 
-const document = await createDocument({
-  title: "Test Document",
-  content: { test: "related to hello" },
-  extension: "notes",
-});
+const createEdge = async (
+  edge: Omit<
+    Edges,
+    "userId" | "id" | "createdAt" | "updatedAt"
+  >,
+) => {
+  const { document1, document2, parent, metadata } = edge;
 
-console.log(document);
+  const response = await fetch(
+    `${API_URL}/edges/create/`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${TOKEN}`,
+      },
+      body: JSON.stringify({
+        document1,
+        document2,
+        parent,
+        metadata,
+      }),
+    },
+  );
+  return await response.json();
+};
 
-const documents = await queryDocuments({
-  extensions: ["notes"],
-  orderBy: "created_at",
-  order: "desc",
-});
+const getEdges = async (documentId: string) => {
+  const response = await fetch(`${API_URL}/edges/all/${documentId}/`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${TOKEN}`,
+    },
+  });
+  return await response.json();
+};
 
-console.log(documents);
+const getParent = async (childId: string) => {
+  const response = await fetch(`${API_URL}/edges/parentof/${childId}/`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${TOKEN}`,
+    },
+  });
+  return await response.json();
+};
+
+const getChild = async (parentId: string) => {
+  const response = await fetch(`${API_URL}/edges/childof/${parentId}/`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${TOKEN}`,
+    },
+  });
+  return await response.json();
+};
+
+// const { data: { document } } = await createDocument({
+//   title: "Test Document",
+//   content: { test: "child of hello" },
+//   extension: "notes",
+// });
+
+const helloId = "c54dfb6c-d93a-4f6f-b026-d005a5d1b62f";
+const childId = "67aacd48-db59-48d9-9a02-fdf62dc9dbcd";
+// const edge = await createEdge({
+//   document1: helloId,
+//   document2: document.id,
+//   parent: null,
+//   metadata: {},
+// });
+
+// console.log(edge);
+
+// const documents = await queryDocuments({
+//   extensions: ["notes"],
+//   orderBy: "created_at",
+//   order: "desc",
+// });
+
+// console.log(documents);
+
+// console.log(helloId);
+
+// console.log(await getChild(helloId));
+console.log(await getParent(childId));
+console.log(await getChild(helloId));

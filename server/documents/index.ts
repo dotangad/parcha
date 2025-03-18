@@ -64,6 +64,7 @@ documents.put("/update/:id", authenticated, async (c) => {
 
   try {
     const updatedDocument = await client().query<TDocument<unknown>>(
+      // TODO: check if user owns the document they're updating
       "UPDATE documents SET content = $1, title = $2 WHERE id = $3 returning *",
       [document, document.title, id],
     );
